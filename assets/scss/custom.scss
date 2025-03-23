@@ -22,3 +22,21 @@ html[data-scheme="dark"] .image-dark {
 .article-list--compact.links a {
   padding: 2rem; /* Or adjust if the anchor itself has extra padding */
 }
+
+:root {
+    --menu-icon-separation: 40px;
+    --container-padding: 15px;
+    --widget-separation: var(--section-separation);
+}
+
+article blockquote {
+    font-size: 1.6rem; // default size
+
+    @include respond(md) {
+        font-size: 1.7rem; // tablet and above
+    }
+
+    @include respond(xl) {
+        font-size: 1.9rem; // desktop and above
+    }
+}
