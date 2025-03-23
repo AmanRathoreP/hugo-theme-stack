@@ -1,1 +1,12 @@
 /* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
+.image-dark {
+    display: none;
+}
+
+html[data-scheme="dark"] .image-light {
+    display: none;
+}
+
+html[data-scheme="dark"] .image-dark {
+    display: block;
+}

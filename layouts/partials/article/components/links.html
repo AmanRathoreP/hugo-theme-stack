@@ -1,30 +1,49 @@
 <div class="article-list--compact links">
     {{ range $i, $link := .Params.links }}
-        <article>
-            <a href="{{ $link.website }}" target="_blank" rel="noopener">
-                <div class="article-details">
-                    <h2 class="article-title">
-                        {{- $link.title -}}
-                    </h2>
-                    <footer class="article-time">
-                        {{ with $link.description }}
-                            {{ . }}
-                        {{ else }}
-                            {{ $link.website }}
-                        {{ end }}
-                    </footer>
-                </div>
-        
-                {{ with $link.image }}
-                    {{ $permalink := . }}
-                    {{ with ($.Resources.GetMatch (printf "%s" (. | safeURL))) }}
-                        {{ $permalink = .RelPermalink }}
-                    {{ end }}
-                    <div class="article-image">
-                        <img src="{{ $permalink }}" loading="lazy">
-                    </div>
+    <article>
+        <a
+            href="{{ $link.website }}"
+            target="_blank"
+            rel="noopener"
+        >
+            <div class="article-details">
+                <h2 class="article-title">
+                    {{- $link.title -}}
+                </h2>
+                <footer class="article-time">
+                    {{ with $link.description }}
+                    {{ . }} {{ else }} {{
+                    $link.website }} {{ end }}
+                </footer>
+            </div>
+
+            {{ with $link.image }} {{ $permalink
+            := . }} {{ with ($.Resources.GetMatch
+            (printf "%s" (. | safeURL))) }} {{
+            $permalink = .RelPermalink }} {{ end
+            }}
+            <div class="article-image">
+                {{ $light := $link.image | default
+                "" }} {{ $dark := $link.image_dark
+                | default "" }} {{ if ne $light ""
+                }}
+                <img
+                    class="image-light"
+                    src="{{ $light }}"
+                    loading="lazy"
+                    alt="{{ $link.title }} featured image light mode"
+                />
+                {{ end }} {{ if ne $dark "" }}
+                <img
+                    class="image-dark"
+                    src="{{ $dark }}"
+                    loading="lazy"
+                    alt="{{ $link.title }} featured image dark mode"
+                />
                 {{ end }}
-            </a>
-        </article>
+            </div>
+            {{ end }}
+        </a>
+    </article>
     {{ end }}
 </div>
