@@ -10,3 +10,16 @@ html[data-scheme="dark"] .image-light {
 html[data-scheme="dark"] .image-dark {
     display: block;
 }
+
+.article-list--compact article .article-image {
+    height: var(--image-size);
+    overflow: hidden;
+}
+
+.article-list--compact.links article {
+  padding: 0.1rem; /* Adjust this value to reduce the overall spacing */
+}
+
+.article-list--compact.links a {
+  padding: 2rem; /* Or adjust if the anchor itself has extra padding */
+}
